@@ -1,0 +1,216 @@
+---
+import type { ImageMetadata } from 'astro'
+import Scene from './Scene.astro'
+
+const photos = import.meta.glob<{ default: ImageMetadata }>('./assets/*.jpg', {
+  eager: true,
+})
+
+function photo(name: string): ImageMetadata {
+  const module = photos[`./assets/${name}.jpg`]
+  if (!module) throw new Error(`Missing photo: ${name}.jpg`)
+  return module.default
+}
+
+// An album is named after its files: menorca1.jpg … menorca6.jpg.
+function album(name: string, count: number): ImageMetadata[] {
+  return Array.from({ length: count }, (_, i) => photo(`${name}${i + 1}`))
+}
+
+const sushi = photo('sushi')
+const beef = photo('beef')
+const spa = photo('spa')
+
+interface SceneProps {
+  title: string
+  text?: string
+  bgClass: string
+  textClass: string
+  images?: ImageMetadata[]
+}
+
+const scenes: SceneProps[] = [
+  {
+    title: 'Per molts anys, Anna! 🎂',
+    text: '32 anys ja... com passa el temps! ✨',
+    bgClass: 'bg-pink-50',
+    textClass: 'text-pink-900',
+  },
+  {
+    title: "Encara me'n recordo del primer viatge que vam fer a Menorca... 🌊",
+    text: "Seria l'inici d'una gran tradició de viatjar.",
+    bgClass: 'bg-rose-900',
+    textClass: 'text-white',
+    images: album('menorca', 6),
+  },
+  {
+    title: "Ja han passat 10 anys d'aquell viatge...",
+    text: '😲 Sembla mentida... ⏳',
+    bgClass: 'bg-orange-50',
+    textClass: 'text-orange-900',
+  },
+  {
+    title: 'Després vam saltar a Eivissa...',
+    text: 'Platgeta, sol i desconnexió. 🏖️🍹',
+    bgClass: 'bg-amber-50',
+    textClass: 'text-amber-900',
+    images: album('ibiza', 6),
+  },
+  {
+    title: 'Vam descobrir Croàcia...',
+    text: '',
+    bgClass: 'bg-cyan-50',
+    textClass: 'text-cyan-900',
+    images: album('croacia', 6),
+  },
+  {
+    title: 'Budapest...',
+    text: '',
+    bgClass: 'bg-indigo-50',
+    textClass: 'text-indigo-900',
+    images: album('budapest', 6),
+  },
+  {
+    title: 'El Covid ens va frenar una miqueta...',
+    text: '🦠 😷',
+    bgClass: 'bg-slate-800',
+    textClass: 'text-slate-200',
+  },
+  {
+    title: 'Per després casar-nos...',
+    text: '',
+    bgClass: 'bg-rose-900',
+    textClass: 'text-white',
+    images: album('wedding', 4),
+  },
+  {
+    title: 'I fer el nostre primer gran viatge a Cuba!',
+    text: '',
+    bgClass: 'bg-emerald-50',
+    textClass: 'text-emerald-900',
+    images: album('cuba', 8),
+  },
+  {
+    title: 'Vam seguir pel Japó...',
+    text: 'Sushi del bo i temples. 🍣⛩️',
+    bgClass: 'bg-stone-100',
+    textClass: 'text-stone-900',
+    images: album('japo', 8),
+  },
+  {
+    title: 'I vam rematar pels Estats Units!',
+    text: '',
+    bgClass: 'bg-sky-50',
+    textClass: 'text-sky-900',
+    images: album('eeuu', 8),
+  },
+  {
+    title: 'I encara vam tenir alguns viatgets pel mig...',
+    text: 'Madrid, País Vasc, Itàlia...',
+    bgClass: 'bg-violet-50',
+    textClass: 'text-violet-900',
+    images: album('extra', 6),
+  },
+  {
+    title: 'Una dècada viatjant al teu costat...',
+    text: 'Hem viscut moltes experiències junts ❤️✨',
+    bgClass: 'bg-rose-100',
+    textClass: 'text-rose-900',
+  },
+  {
+    title: 'I ara ens preparem pel viatge més gran de tots...',
+    text: 'Començar a formar la nostra família. 👶🍼',
+    bgClass: 'bg-teal-50',
+    textClass: 'text-teal-900',
+  },
+  {
+    title: 'Així que segurament et preguntaràs... quin és el meu regal, no? 🤔',
+    text: 'Amb en Martí no en tens suficient? 😜',
+    bgClass: 'bg-slate-900',
+    textClass: 'text-white',
+  },
+  {
+    title: 'És broma! 🎁',
+    text: 'Et mereixes un regal pensat només per a tu.',
+    bgClass: 'bg-pink-100',
+    textClass: 'text-pink-900',
+  },
+  {
+    title: 'He estat pensant en els sacrificis que estàs fent...',
+    text: 'I he arribat a la conclusió... 💡',
+    bgClass: 'bg-stone-100',
+    textClass: 'text-stone-800',
+  },
+  {
+    title: 'Que el teu regal tenia que ser... 🤫',
+    bgClass: 'bg-stone-200',
+    textClass: 'text-stone-900',
+  },
+  {
+    title: '🎟️ Un "Pack VIP" 👑',
+    text: "De tot allò que has hagut de sacrificar durant l'embaràs!",
+    bgClass: 'bg-amber-300',
+    textClass: 'text-amber-900',
+  },
+  {
+    title: '1. Tornar a menjar sushi com déu mana',
+    text: "Crec que ha de ser l'Umai no?",
+    bgClass: 'bg-rose-50',
+    textClass: 'text-rose-900',
+    images: [sushi],
+  },
+  {
+    title: '2. Tornar a disfrutar de la carn poca feta',
+    text: 'Catalina? (🤤, però si vols en provem un altre!).',
+    bgClass: 'bg-red-900',
+    textClass: 'text-white',
+    images: [beef],
+  },
+  {
+    title: "3. Relaxar-te en un bon SPA amb l'aigua ben calentona",
+    text: 'Aqua Gerunda, Magma, Caldea... on tu vulguis i quan vulguis.',
+    bgClass: 'bg-cyan-100',
+    textClass: 'text-cyan-900',
+    images: [spa],
+  },
+  {
+    title: "A gaudir, que t'ho mereixes tot i més!",
+    text: "❤️ T'estimo moltíssim ❤️",
+    bgClass: 'bg-pink-100',
+    textClass: 'text-rose-900',
+    images: [sushi, beef, spa],
+  },
+]
+---
+
+{scenes.map((scene) => (
+  <Scene
+    title={scene.title}
+    text={scene.text}
+    bgClass={scene.bgClass}
+    textClass={scene.textClass}
+    images={scene.images}
+  />
+))}
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll')
+
+  elementsToAnimate.forEach((element) => {
+    gsap.to(element, {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 80%',
+      },
+    })
+  })
+</script>

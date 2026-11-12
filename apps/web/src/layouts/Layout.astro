@@ -1,0 +1,27 @@
+---
+import '../styles/global.css'
+import Analytics from '@vercel/analytics/astro'
+
+interface Props {
+  title: string
+  // Each birthday has its own look; the page decides what the body wears.
+  class?: string
+}
+
+const { title, class: className } = Astro.props
+---
+
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <Analytics />
+  </head>
+  <body class:list={['antialiased', className]}>
+    <slot />
+  </body>
+</html>

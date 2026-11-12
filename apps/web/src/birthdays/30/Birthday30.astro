@@ -1,0 +1,85 @@
+<div class="container mx-auto py-10 px-5 text-center">
+  <h1 class="text-4xl font-bold text-pink-700 mb-4">❤️Anna❤️</h1>
+  <h1 class="text-4xl font-bold text-pink-700 mb-4">Happy 30 Birthday!</h1>
+  <h1 class="text-4xl font-bold text-pink-700 mb-4">🎉🥂🍾🎁</h1>
+  <div class="flex justify-center">
+    <button
+      id="sing"
+      class="text-gray-800 font-bold py-2 px-4 inline-flex items-center"
+    >
+      <img src="/30/sound.svg" alt="Music" width="50" />
+      <span>Sing</span>
+    </button>
+    <img width="200" alt="Dog giving happy birthday" src="/30/singing.gif" />
+  </div>
+  <div class="flex justify-center">
+    <img width="200" alt="Dog giving happy birthday" src="/30/dog.gif" />
+    <img width="200" alt="Cat showing love" src="/30/love.webp" />
+  </div>
+  <p class="text-lg text-gray-700 mb-8">
+    Encara que estiguis estressada per les Opos avui es un día molt especial
+    🥰😘
+  </p>
+  <img
+    width="200"
+    class="m-auto"
+    alt="Cute love bear roses"
+    src="/30/cute-love-bear-roses.webp"
+  />
+  <div class="my-8">
+    <h2 class="text-2xl font-bold text-pink-700 mb-4">Surprise!</h2>
+    <p class="text-lg text-gray-700 mb-4">
+      Per celebrar-ho, et regalo una escapadeta a qualsevol lloc (assequible 😅){' '}
+      <br />
+      Podria ser per la península o per algun lloc d'Europa, com vulguis! 🌍{' '}
+      <br />
+      <span class="text-xs text-gray-700">Vol i estada garantitzada :)</span>
+    </p>
+    <ul>
+      <li>España</li>
+      <li>Portugal</li>
+      <li>
+        <s>França</s>
+      </li>
+      <li>Italia</li>
+      <li>Amsterdam</li>
+      <li>...</li>
+    </ul>
+    <p class="text-lg text-gray-700">Quina destinació escolliràs?</p>
+    <img
+      width="200"
+      class="m-auto"
+      alt="Penguin giving hearts"
+      src="/30/penguin.webp"
+    />
+  </div>
+  <div>
+    <h2 class="text-2xl font-bold text-pink-700 mb-4">Ahh</h2>
+    <p class="text-lg text-gray-700 mb-4">
+      Per no esperar-nos a trobar una data per fer el viatge hi ha un altre
+      regalitu
+    </p>
+    <p class="text-lg text-gray-700">
+      Dinar o Sopar al Umai que sé que t'agrada molt :D
+    </p>
+    <p class="text-xs text-gray-700">Podem probar un altre també eh</p>
+  </div>
+  <div class="flex flex-wrap justify-center">
+    <img width="200" alt="Bear kiss bear kisses" src="/30/cats.webp" />
+    <img
+      width="200"
+      alt="Bear kiss bear kisses"
+      src="/30/bear-kiss-bear-kisses.gif"
+    />
+    <img width="200" alt="Bear kiss bear kisses" src="/30/swirl.webp" />
+  </div>
+</div>
+
+<script>
+  const audio = new Audio('/30/happy-birthday.mp3')
+  audio.loop = true
+
+  document.getElementById('sing')?.addEventListener('click', () => {
+    audio.play()
+  })
+</script>
